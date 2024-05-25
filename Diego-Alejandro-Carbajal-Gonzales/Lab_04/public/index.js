@@ -17,7 +17,6 @@ document.getElementById('formulario-evento').addEventListener('submit', async (e
 
         if (response.ok) {
             alert('Evento creado exitosamente');
-            // Actualizar la lista de eventos después de agregar uno nuevo
             obtenerEventos();
         } else {
             const errorMessage = await response.text();
@@ -39,13 +38,47 @@ async function obtenerEventos() {
         eventosContainer.innerHTML = '';
 
         eventos.forEach(evento => {
-            const eventoElement = document.createElement('p');
-            eventoElement.textContent = `${evento.fecha} ${evento.hora}: ${evento.titulo}`;
+            const eventoElement = document.createElement('div');
+            eventoElement.classList.add('evento');
+            
+            const eventoText = document.createElement('p');
+            eventoText.textContent = `${evento.fecha} ${evento.hora}: ${evento.titulo}`;
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.addEventListener('click', () => eliminarEvento(evento.fecha, evento.hora));
+
+            eventoElement.appendChild(eventoText);
+            eventoElement.appendChild(deleteButton);
             eventosContainer.appendChild(eventoElement);
         });
     } catch (error) {
         console.error('Error al obtener los eventos:', error);
         alert('Error al obtener los eventos. Por favor, inténtalo de nuevo.');
+    }
+}
+
+// Función para eliminar un evento
+async function eliminarEvento(fecha, hora) {
+    try {
+        const response = await fetch('/eventos', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ fecha, hora })
+        });
+
+        if (response.ok) {
+            alert('Evento eliminado exitosamente');
+            obtenerEventos();
+        } else {
+            const errorMessage = await response.text();
+            alert(`Error al eliminar el evento: ${errorMessage}`);
+        }
+    } catch (error) {
+        console.error('Error al eliminar el evento:', error);
+        alert('Error al eliminar el evento. Por favor, inténtalo de nuevo.');
     }
 }
 
