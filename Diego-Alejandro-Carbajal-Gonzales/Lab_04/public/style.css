@@ -1,34 +1,124 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    text-align: center;
-}
-
-#eventos {
-    margin: 20px auto;
-    max-width: 600px;
-}
-
-#eventos p {
     margin: 0;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
 }
 
 form {
-    text-align: center;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label, input {
+    margin-bottom: 10px;
 }
 
 input[type="date"],
 input[type="time"],
 button {
     padding: 10px;
-    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.evento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.evento p {
+    margin: 0;
+    flex: 1;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.icon-button:hover {
+    transform: scale(1.1);
+}
+
+.icon-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-delete img {
+    filter: invert(39%) sepia(75%) saturate(5592%) hue-rotate(355deg) brightness(100%) contrast(97%);
+}
+
+.icon-edit img {
+    filter: invert(38%) sepia(81%) saturate(1992%) hue-rotate(186deg) brightness(97%) contrast(101%);
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    button,
+    input[type="date"],
+    input[type="time"] {
+        font-size: 14px;
+    }
 }

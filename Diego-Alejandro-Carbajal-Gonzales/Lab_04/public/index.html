@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Agenda Personal</h1>
-    <div id="eventos">
+    <header>
+        <h1>Bienvenido a tu Agenda Personal</h1>
+    </header>
+    <div class="container">
+        <form id="formulario-evento">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" required>
+            <label for="hora">Hora:</label>
+            <input type="time" id="hora" name="hora" required>
+            <button type="submit">Agregar Evento</button>
+        </form>
+        <div id="eventos"></div>
     </div>
-    <form id="formulario-evento">
-        <input type="date" id="fecha" required>
-        <input type="time" id="hora" required>
-        <button type="submit">Crear Evento</button>
-    </form>
-
     <script src="index.js"></script>
 </body>
 </html>

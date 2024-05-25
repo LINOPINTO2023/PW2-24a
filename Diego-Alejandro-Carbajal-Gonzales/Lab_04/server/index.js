@@ -25,15 +25,20 @@ app.get('/eventos', (req, res) => {
         dates.forEach(date => {
             const dateDir = path.join(agendaDir, date);
             if (fs.statSync(dateDir).isDirectory()) {
-                const times = fs.readdirSync(dateDir);
-                times.forEach(time => {
-                    const eventPath = path.join(dateDir, time);
+                const events = fs.readdirSync(dateDir);
+                events.forEach(event => {
+                    const eventPath = path.join(dateDir, event);
                     if (fs.statSync(eventPath).isFile()) {
-                        const eventTitle = fs.readFileSync(eventPath, 'utf8').split('\n')[0];
+                        const [hora, title] = event.replace('.txt', '').split('_');
+                        const eventContent = fs.readFileSync(eventPath, 'utf8');
+                        const [titulo, ...descripcionArr] = eventContent.split('\n');
+                        const descripcion = descripcionArr.join('\n');
                         eventos.push({
                             fecha: date,
-                            hora: time.replace('.txt', ''),
-                            titulo: eventTitle
+                            hora,
+                            titulo,
+                            descripcion,
+                            fileName: event
                         });
                     }
                 });
@@ -49,7 +54,7 @@ app.post('/eventos', (req, res) => {
     const { fecha, hora, titulo, descripcion } = req.body;
 
     const eventDir = path.join(__dirname, '../agenda', fecha);
-    const eventPath = path.join(eventDir, `${hora}.txt`);
+    const eventPath = path.join(eventDir, `${hora}_${titulo}.txt`);
 
     if (!fs.existsSync(eventDir)) {
         fs.mkdirSync(eventDir, { recursive: true });
@@ -72,28 +77,36 @@ app.post('/eventos', (req, res) => {
 
 // Ruta para editar un evento
 app.put('/eventos', (req, res) => {
-    const { fecha, hora, titulo, descripcion } = req.body;
-    const eventPath = path.join(__dirname, '../agenda', fecha, `${hora}.txt`);
+    const { fecha, hora, titulo, descripcion, fileName } = req.body;
+    const eventDir = path.join(__dirname, '../agenda', fecha);
+    const oldEventPath = path.join(eventDir, fileName);
+    const newEventPath = path.join(eventDir, `${hora}_${titulo}.txt`);
 
-    if (!fs.existsSync(eventPath)) {
+    if (!fs.existsSync(oldEventPath)) {
         res.status(404).send('El evento no existe');
         return;
     }
 
-    fs.writeFile(eventPath, `${titulo}\n${descripcion}`, err => {
+    fs.writeFile(newEventPath, `${titulo}\n${descripcion}`, err => {
         if (err) {
             console.error('Error al editar el archivo del evento:', err);
             res.status(500).send('Error interno del servidor');
             return;
         }
+
+        if (oldEventPath !== newEventPath) {
+            fs.unlinkSync(oldEventPath);
+        }
+
         res.status(200).send('Evento editado exitosamente');
     });
 });
 
 // Ruta para eliminar un evento
 app.delete('/eventos', (req, res) => {
-    const { fecha, hora } = req.body;
-    const eventPath = path.join(__dirname, '../agenda', fecha, `${hora}.txt`);
+    const { fecha, hora, titulo } = req.body;
+    const eventDir = path.join(__dirname, '../agenda', fecha);
+    const eventPath = path.join(eventDir, `${hora}_${titulo}.txt`);
 
     if (!fs.existsSync(eventPath)) {
         res.status(404).send('El evento no existe');
