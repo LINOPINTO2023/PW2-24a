@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Eventos</title>
+</head>
+<body>
+<h1>Lista de Eventos</h1>
+
+<ul id="eventsList"></ul>
+
+<script>
+// Retrieve the event data from the URL query parameters
+const urlParams = new URLSearchParams(window.location.search);
+const eventsData = urlParams.get('events');
+
+// Parse the event data
+const events = JSON.parse(decodeURIComponent(eventsData));
+
+// Display the events in a list
+const eventsListElement = document.getElementById('eventsList');
+eventsListElement.innerHTML = events.map(event => `<li>${event.title}</li>`).join('');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+#logo {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#display {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#number-pad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.number-button {
+    width: 75px;
+    height: 75px;
+    border: 1px solid #ccc;
+    margin: 5px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 24px;
+    cursor: pointer;
+}

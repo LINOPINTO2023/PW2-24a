@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://localhost:8000/style.css">
+<title>Mi Agenda</title>
+</head>
+<body>
+<h1>Mi agenda</h1>
+
+<div id="maincontainer">
+  <div id="uppercontainer">
+    <div id="logDisplay">
+      <label style="flex: 1">Ultimas 2 operaciones realizadas</label>
+      <p id= "history1" style="flex: 3;"></p>
+      <p id= "history2" style="flex: 3;"></p>
+    </div>
+    <form id="createEventForm">
+      <label>Crea un evento!</label><br>
+      <label for="date">Date (YYYY-MM-DD):</label><br>
+      <input type="date" id="date" name="date" required><br><br>
+    
+      <label for="hour">Hour (HH:MM):</label><br>
+      <input type="time" id="hour" name="hour" required><br><br>
+    
+      <label for="field1">Titulo:</label>
+      <input type="text" id="title" name="field1"><br><br>
+      <label for="field2">Descripcion:</label>
+      <input type="text" id="desc" name="field2"><br><br>
+    </form>
+    <form id="deleteForm">
+      <label>Elimina un evento</label><br>
+      <label for="date">Date (YYYY-MM-DD):</label><br>
+      <input type="date" id="deletedate" name="deletedate" required><br><br>
+    
+      <label for="hour">Hour (HH-MM):</label><br>
+      <input type="time" id="deletehour" name="deletehour" required><br><br>
+    </form>
+  </div>
+  <div id= 'actionsDisplay'>
+    <button id="getEventsButton">
+      <img src="http://localhost:8000/sideeye.png" style="height: 30%; width: auto">
+    </button>
+    <button id="createEvent">
+      <img src="http://localhost:8000/createicon.png" style="height: 30%; width: auto">
+    </button>
+    <button id="deleteEvent">
+      <img src="http://localhost:8000/deleteicon.png" style="height: 30%; width: auto">
+    </button>
+  </div>
+</div>
+<script>
+
+document.getElementById('getEventsButton').addEventListener('click', function() {
+  fetch('/show', {
+    method: 'GET'
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Open a new browser window or tab with the events page and pass the data
+    const eventsPageUrl = '/eventList.html';
+    const eventsData = encodeURIComponent(JSON.stringify(data));
+    window.open(`${eventsPageUrl}?events=${eventsData}`, '_blank');
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    alert('An error occurred. Please try again later.');
+  });
+});
+
+document.getElementById('createEvent').addEventListener('click', function() {
+  const date = document.getElementById('date').value;
+  const hour = document.getElementById('hour').value;
+  const text = document.getElementById('title').value + "\n" + document.getElementById('desc').value;
+    fetch('/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ date, hour, text })
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Open a new browser window or tab with the events page and pass the data
+      document.getElementById("history1").innerText = document.getElementById("history2").innerText;
+      document.getElementById("history2").innerText = data.message;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
+    });
+  });
+  document.getElementById('deleteEvent').addEventListener('click', function() {
+    const date = document.getElementById('deletedate').value;
+    const hour = document.getElementById('deletehour').value;
+    fetch('/delete', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ date, hour })
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("history1").innerText = document.getElementById("history2").innerText;
+      document.getElementById("history2").innerText = data.message;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
+    });
+  });
+
+</script>
+
+</body>
+</html>

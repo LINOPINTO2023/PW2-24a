@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Pad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        // Function to create and insert an element
+        function createElement(tag, content, attributes = {}) {
+            const element = document.createElement(tag);
+            element.textContent = content;
+            for (const [key, value] of Object.entries(attributes)) {
+                element.setAttribute(key, value);
+            }
+            document.body.appendChild(element);
+            return element;
+        }
+
+        // Create and insert logo image
+        const logo = createElement('img', '', {
+            id: 'logo',
+            src: 'banco.jpg',
+            alt: 'Bank Logo',
+            width: '200',
+            style: 'margin: auto; padding-bottom: 10px;'
+        });
+
+        // Create and insert display field
+        const display = createElement('input', '', {
+            id: 'display',
+            type: 'text',
+            disabled: true
+        });
+
+        // Create number buttons and shuffle them
+        const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+        const shuffledNumbers = numbers.slice(); // Copy the original array
+        for (let i = shuffledNumbers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledNumbers[i], shuffledNumbers[j]] = [shuffledNumbers[j], shuffledNumbers[i]];
+        }
+
+        // Create and insert number pad container
+        const numberPad = createElement('div', '', { id: 'number-pad' });
+        numberPad.style.display = "flex";
+        numberPad.style.flexWrap = "wrap";
+        numberPad.style.justifyContent = "space-evenly";
+        // Create and insert number buttons with event listeners
+        shuffledNumbers.forEach((number, index) => {
+            const button = createElement('button', number, { class: 'number-button' });
+            numberPad.appendChild(button);
+
+            button.addEventListener('click', () => {
+                const displayValue = document.getElementById('display').value;
+                if (number !== '&larr;' && number !== 'C') { // Avoid backspace and clear functionality conflicts
+                    document.getElementById('display').value = displayValue + number;
+                } else if (number === '&larr;') {
+                    document.getElementById('display').value = displayValue.slice(0, -1);
+                } else if (number === 'C') {
+                    document.getElementById('display').value = '';
+                }
+            });
+
+            // Add class for row styling (optional)
+            if (index % 3 === 0) {
+                button.classList.add('number-button-first'); // First button in a row
+            } else if (index % 3 === 2) {
+                button.classList.add('number-button-last'); // Last button in a row
+            }
+        });
+    </script>
+</body>
+</html>

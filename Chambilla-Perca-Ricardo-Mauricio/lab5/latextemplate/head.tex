@@ -1,0 +1,135 @@
+%\packagelist
+\documentclass[10pt]{article}
+\usepackage[top=3cm, bottom=3cm, outer=3cm, inner=3cm]{geometry}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{url}
+%\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{array}
+%\usepackage{multicol}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+\usepackage{natbib}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+
+\useunder{\uline}{\ul}{}
+\usepackage{svg}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\lstdefinestyle{ascii-tree}{
+    literate={├}{|}1 {─}{--}1 {└}{+}1 
+  }
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+%\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{array}
+
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+\newcolumntype{N}{@{}m{0pt}@{}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\itemEmail}{rchambillap@unsa.edu.pe}
+\newcommand{\itemStudent}{Chambilla Perca Ricardo Mauricio}
+\newcommand{\itemCourse}{Programacion Web 2}
+\newcommand{\itemCourseCode}{1701213}
+\newcommand{\itemSemester}{III}
+\newcommand{\itemUniversity}{Universidad Nacional de San Agustín de Arequipa}
+\newcommand{\itemFaculty}{Facultad de Ingeniería de Producción y Servicios}
+\newcommand{\itemDepartment}{Departamento Académico de Ingeniería de Sistemas e Informática}
+\newcommand{\itemSchool}{Escuela Profesional de Ingeniería de Sistemas}
+\newcommand{\itemAcademic}{2024 - A}
+\newcommand{\itemInput}{Del 29 de Mayo 2024}
+\newcommand{\itemOutput}{Al 31 de Mayo 2024}
+\newcommand{\itemPracticeNumber}{5}
+\newcommand{\itemTheme}{Python}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[english,spanish]{babel}
+\usepackage[utf8]{inputenc}
+\AtBeginDocument{\selectlanguage{spanish}}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\refname}{Referencias}
+\renewcommand{\tablename}{Tabla} %esto no funciona cuando se usa babel
+\AtBeginDocument{%
+	\renewcommand\tablename{Tabla}
+}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{30pt}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+\fancyhead[L]{\raisebox{-0.2\height}{\includegraphics[width=3cm]{./img/logo_episunsa.png}}}
+\fancyhead[C]{\fontsize{7}{7}\selectfont	\itemUniversity \\ \itemFaculty \\ \itemDepartment \\ \itemSchool \\ \textbf{\itemCourse}}
+\fancyhead[R]{\raisebox{-0.2\height}{\includegraphics[width=1.2cm]{./img/logo_abet}}}
+\fancyfoot[L]{Estudiante Ricardo Ch}
+\fancyfoot[C]{\itemCourse}
+\fancyfoot[R]{Página \thepage}
+
+% para el codigo fuente 
+\usepackage{listings}
+\usepackage{color, colortbl}
+\definecolor{numberOrange}{RGB}{235, 126, 9}
+\definecolor{mygreen}{RGB}{40, 194, 6}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{myblue}{RGB}{57, 118, 189}
+\definecolor{gray}{rgb}{0.156,0.146,0.135}
+\definecolor{mygray}{RGB}{135, 135, 135}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{codebackgroundCode}{RGB}{10, 10, 20}
+\definecolor{codebackgroundBash}{rgb}{0.95, 0.95, 0.92}
+\definecolor{tablebackground}{rgb}{0.8, 0, 0}
+
+
+\lstdefinestyle{java}{frame=tb,
+	language=Java,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\footnotesize\ttfamily\color[RGB]{255,255,255}},
+	numberstyle=\color{mygray},
+	numbers=left, 
+	keywordstyle=\color{myblue},
+	morekeywords={String, System},
+	commentstyle=\color{mygray},
+	stringstyle=\color{mygreen},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=2,
+	backgroundcolor= \color{codebackgroundCode},
+	showspaces=false,
+	showtabs=false,
+	showlines=false,
+}
+
+\lstdefinestyle{mybash}{frame=tb,
+	language=bash,
+	showstringspaces=false,
+	columns=flexible,
+	keepspaces=true,
+	basicstyle={\small\ttfamily},
+	numberstyle=\color{mygray},
+	keywordstyle=\color{myblue},
+	morekeywords={java, javac},
+	commentstyle=\color{mygray},
+	stringstyle=\color{mygreen},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=2,
+	backgroundcolor= \color{codebackgroundBash},
+	showspaces=false,
+	showtabs=false,
+	showlines=false,
+}
