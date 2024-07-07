@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search image Google</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="content">
+            <div class="logo"><a href="#">GOOGLE</a></div>
+            <ul id="temas">
+                <li class="tem"><a href="simple.html">Buscar con Google</a></li>
+                <li class="tem"><a href="image.html">Buscar imágenes</a></li>
+                <li class="tem"><a href="advanced.html">Búsqueda avanzada</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div style="height: 75px"></div>
+    <main>
+        <div class="google">
+            <h2 class="subtitle">Imágenes</h2>
+            <img src="img/google1.png">
+        </div>
+        <form action="cgi-bin/image.pl" method="GET">
+            <input type="text" name='search' placeholder="Ingrese su búsqueda">
+            <input type="submit" value='Búsqueda Imagen en Google'>
+        </form>
+    </main>
+</body>
+</html>

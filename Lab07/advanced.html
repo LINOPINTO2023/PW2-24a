@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search advanced Google</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="content">
+            <div class="logo"><a href="#">GOOGLE</a></div>
+            <ul id="temas">
+                <li class="tem"><a href="simple.html">Buscar con google</a></li>
+                <li class="tem"><a href="image.html">Buscar imágenes</a></li>
+                <li clas="tem"><a href="advanced.html">Búsqueda avanzada</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+      <div style="height: 100px"></div>
+        <div class="google">
+          <h1>Mostrar páginas que contengan</h1>
+        </div>
+        <form action="cgi-bin/advanced.pl" method="GET">
+          <label for='all'>todas estas palabras:</label>
+          <input type="text" name='all'>
+          <label for='exact'>esta palabra o frase exactas:</label>
+          <input type="text" name='exact'>
+          <label for='none'>ninguna de estas palabras:</label>
+          <input type="text" name='none'>
+          <input type="submit" value='Búsqueda Avanzada en Google'>
+        </form>
+    </main>
+</body>
+</html>

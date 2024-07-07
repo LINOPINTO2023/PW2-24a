@@ -1,0 +1,137 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Raleway:wght@700&display=swap');
+:root {
+    --primary-color: #960018;
+    --primary-color-dark: #670010;
+    --secondary-color: #ca8a04;
+    --text-dark: #3c0000;
+    --text-light:#1f2937;
+    --max-width: 1200px;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+body {
+    font-family: "Poppins";
+    width: var(--max-width);
+    min-height: 100vh;
+    margin: auto;
+    color:var(--text-light);
+}
+/*navegación*/
+nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    /*this is necesary?*/
+}
+.content {
+    display: flex;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 1.5rem 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav .logo {
+    display: inline-block;
+    width: min-content;
+
+}
+.nav .logo a {
+    display: inline-block;
+    width: fit-content;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color-dark);
+    transition: 0.3s;
+    /*interesting*/
+}
+.nav .logo a:hover {
+    color: var(--primary-color);
+}
+#temas {
+    display: inline-flex;
+    width: fit-content;
+    justify-content: center;
+    /*segun yo*/
+    gap: 1rem;
+    list-style: none;
+    transition: left 0.3s;
+    position: relative;
+    /*alinear*/
+    right: 0px;
+}
+#temas li a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--text-dark);
+    transition: 0.3s;
+}
+#temas li a:hover {
+    border-top-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+.main {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+.google {
+    display: block;
+    margin-bottom: 20px;
+}
+.google img {
+    display: block;
+    margin: auto;
+    width: 600px;
+    height: auto;
+}
+.subtitle {
+    position: absolute;
+    display: block;
+    top: 265px;
+    right: 500px;
+}
+form {
+    text-align: center;
+    margin-top: 20px;
+}
+label {
+    display: block;
+    margin-top: 50px;
+}
+
+form input[type="text"] {
+    display: block;
+    width: 1250px;
+    height: 50px;
+    padding-inline: 15px;
+    margin-block: 50px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: auto;
+}
+form input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    margin-block: 25px;
+    cursor: pointer;
+}
+form input[type="submit"]:hover {
+    background-color: #3367d6;
+}
